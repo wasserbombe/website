@@ -1,0 +1,181 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#index {
+    background: url("../images/bg.jpg") no-repeat fixed;
+    background-size: cover;
+}
+
+nav ul li a:hover {
+    background: #abc;
+}
+
+.navbar-nav .active a {
+    color: #222;
+}
+
+.container.main {
+    min-height: calc(100% - 50px);
+    height: auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+@media (min-width: 768px){
+.container.main {
+    min-height: calc(100% - 100px);
+    margin-top: 100px;
+}
+}
+
+#index .main .row {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 100%;
+    padding: 0;
+}
+
+.main h1 {
+    color: #ff4a59;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+#index h1 {
+    color: #fff;
+    display: inline;
+    background: #ff4a59;
+}
+
+.panel-default>.panel-heading {
+    background: none;
+}
+
+.panel-title>a:hover {
+    color: #ff4a59;
+    text-decoration: none;
+}
+
+footer {
+    margin-top: 20px;
+    background: #262626;
+    color: #818181;
+}
+
+footer h4 {
+    color: #fff;
+}
+
+footer .container {
+    padding-top: 15px;
+}
+
+footer .footer-links ul {
+    padding: 0;
+}
+
+footer .footer-links li {
+    list-style: none;
+    padding-bottom: 3px;
+}
+
+footer .footer-links a {
+    color: #818181;
+}
+
+footer .footer-links a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .footer-social a {
+    color: #fff;
+}
+
+footer .footer-social i {
+    color: #818181;
+}
+
+/* Bootsrap überschreiben */
+
+.navbar-brand {
+    height: auto;
+    padding: 5px;
+}
+
+.navbar-nav>li>a {
+    text-transform: uppercase;
+    color: #5e5e5e;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar-default .navbar-toggle {
+    border: none;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background: #ff4a59;
+}
+
+.panel-group .panel {
+    border-radius: 0;
+}
+
+.panel-body a {
+    color: #ff4a59;
+}
+
+@media (min-width: 768px){
+
+.navbar-brand img {
+    height: 90px;
+}
+
+#index .navbar-default {
+    background: none;
+    border: none;
+}
+
+.navbar-nav>li>a {
+    line-height: 100px;
+    padding: 0 15px;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #222;
+    background: none;
+}
+.pull {
+    float: right;
+}
+}
+
+
+/* headroom.js foo */
+
+.headroom {
+    transition: transform 200ms linear;
+    -webkit-transition:  -webkit-transform 200ms linear;
+    -moz-transition: -moz-transform 200ms linear;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+}
