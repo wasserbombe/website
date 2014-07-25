@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="fa/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title></title>
-            <?php
-require('blog/wp-blog-header.php');
-?>
+    <?php
+        define('WP_USE_THEMES', false);
+        require('blog/wp-blog-header.php');
+    ?>
 </head>
 <body>
 <nav id="navigation" class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -34,22 +35,28 @@ require('blog/wp-blog-header.php');
     </div>
     <div class="header-line"></div>
 </nav>
-<div class="container main">
+<div class="container main blog">
     <div class="row">
         <div class="col-sm-8">
-        <h1>Blog</h1>
-<?php
-$posts = get_posts('numberposts=10&order=ASC&orderby=post_title');
-foreach ($posts as $post) : setup_postdata( $post ); ?>
-<div class="post">
-    <h2><?php the_title(); ?></h2>
-    <section><?php the_content(); ?></section>
-    <div class="date"><?php the_date();?></div>
-</div>
-<hr>
-<?php
-endforeach;
-?>
+            <h1>Blog</h1>
+            <hr>
+            <?php if (have_posts()) : ?>
+            <?php while (have_posts()) : the_post(); ?>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4><?php the_title(); ?></h4></div>
+                <div class="panel-body">
+                    <section><?php the_content(); ?></section>
+                    <div class="meta">Geschrieben am <span class="date"><?php the_date();?></span> von <span class="author"><?php the_author();?></span></div>
+                </div>
+            </div>
+            <?php endwhile; ?>
+             <div class="navigation">
+                <div class="newer"><?php previous_posts_link('&laquo; Neuere Einträge') ?></div>
+                <div class="older"><?php next_posts_link('Ältere Einträge &raquo;','') ?></div>
+             </div>
+            <?php else : ?>
+                <h4>Noting found</h4>
+            <?php endif; ?>
         </div>
     </div>
 </div>
