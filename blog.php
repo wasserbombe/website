@@ -79,20 +79,20 @@
             <h4>Links</h4>
             <hr>
             <ul>
-                <li><a href="">Map</a></li>
-                <li><a href="">Wiki</a></li>
-                <li><a href="">Firmware Download</a></li>
-                <li><a href="">Knotenverwaltung</a></li>
+                <li><a href="http://map.freifunk-rhein-neckar.de/">Map</a></li>
+                <li><a href="https://w.ffrn.de">Wiki</a></li>
+                <li><a href="http://fw.freifunk-rhein-neckar.de">Firmware Download</a></li>
+                <li><a href="https://register.freifunk-rhein-neckar.de/">Knotenverwaltung</a></li>
             </ul>
         </div>
         <div class="col-sm-4 footer-links footer-social">
             <h4>Social & Kontakt</h4>
             <hr>
             <ul>
-                <li><a href="kontakt.html"><i class="fa fa-twitter"></i> Twitter</a></li>
-                <li><a href="rechtliches.html"><i class="fa fa-comments-o"></i> IRC</a></li>
-                <li><a href="#"><i class="fa fa-paper-plane"></i> Mailing Liste</a></li>
-                <li><a href="ueber-uns.html"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
+                <li><a href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
+                <li><a href="irc://irc.hackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
+                <li><a href="https://lists.freifunk-rhein-neckar.de/"><i class="fa fa-paper-plane"></i> Mailing Liste</a></li>
+                <li><a href="https://w.ffrn.de/doku.php/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
             </ul>
         </div>
     </div>
