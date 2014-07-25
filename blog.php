@@ -19,14 +19,14 @@ require('blog/wp-blog-header.php');
                 <span class="sr-only">Toggle navigation</span>
                 <i class="fa fa-bars"></i>
             </button>
-            <b><a class="navbar-brand" href="#"><img src="images/ffrn_logo.svg"></a></b>
+            <b><a class="navbar-brand" href="index.html"><img src="images/ffrn_logo.svg"></a></b>
         </div>
         <div class="collapse navbar-collapse pull" id="main-navbar">
             <ul class="nav navbar-nav">
                 <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="die_idee.html">Die Idee</a></li>
-                <li><a href="webdesign.html">Mitmachen</a></li>
-                <li><a href="webdesign.html">Blog</a></li>
+                <li><a href="die_idee.html">Die Idee</a></li>
+                <li><a href="mitmachen.html">Mitmachen</a></li>
+                <li class="active"><a href="blog.php">Blog</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
