@@ -55,9 +55,10 @@ nav ul li a:hover {
 }
 
 .main h1 {
-    color: #ff4a59;
+    background: #ff4a59;
+    color: #fff;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    display: inline-block;
 }
 
 #index h1 {
