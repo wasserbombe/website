@@ -54,10 +54,15 @@ app.getCurrentStats = function () {
     nClients = data.nodes.filter(function(d) {
       return d.flags.client && d.flags.online;
       }).length;
-  
-    app.data.onlineNodeCount = nNodes;
-    app.data.onlineUserCount = nClients - nLegacyNodes;
-    $(document).trigger("usersupdated");
+    // + When the pased data differs from the current: update the values
+    // + and trigger the event.
+    if(app.data.onlineUserCount !== (nClients -nLegacyNodes)
+    	&& app.data.onlineNodeCount !== nNodes){
+      app.data.onlineUserCount = nClients - nLegacyNodes;
+      app.data.onlineNodeCount = nNodes;
+      $(document).trigger("usersupdated");
+    }
+    
   });
 };
 
