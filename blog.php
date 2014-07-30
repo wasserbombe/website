@@ -43,7 +43,7 @@
             <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
             <div class="panel panel-default">
-                <div class="panel-heading"><h4><?php the_title(); ?></h4></div>
+                <div class="panel-heading"><h4><a href="blog.php?p=<?php the_ID(); ?>" rel="bookmark"><?php the_title(); ?></a></h4></div>
                 <div class="panel-body">
                     <section><?php the_content(); ?></section>
                     <div class="meta">Geschrieben am <span class="date"><?php the_date();?></span> von <span class="author"><?php the_author();?></span></div>

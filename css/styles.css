@@ -203,12 +203,16 @@ footer .footer-social i {
     margin: 15px 0;
 }
 
-.date, .author {
-    color: #ff4a59;
-}
-
 .blog h4 {
     margin: 5px;
+}
+
+.blog h4 a {
+    color: #333;
+}
+
+.blog h4 a:hover {
+    color: #ff4a59;
 }
 
 .blog .meta {
