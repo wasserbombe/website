@@ -243,3 +243,12 @@ text-align: right;
     width: 100%;
     height: auto;
 }
+
+.btn-primary {
+    background-color: #ff4a59;
+    border-color: #ff4a59;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #ff6e7a;
+    border-color: ##ff6e7a;
+}
