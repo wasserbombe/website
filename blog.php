@@ -91,7 +91,7 @@
             <ul>
                 <li><a target="_blank" href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
                 <li><a target="_blank" href="irc://irc.hackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
-                <li><a target="_blank" href="https://lists.ffrn.de/"><i class="fa fa-paper-plane"></i> Mailing Liste</a></li>
+                <li><a target="_blank" href="https://lists.ffrn.de/"><i class="fa fa-paper-plane"></i> Mailingliste</a></li>
                 <li><a target="_blank" href="https://w.ffrn.de/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
                 <li><a target="_blank" href="https://github.com/Freifunk-Rhein-Neckar"><i class="fa fa-github"></i> GitHub</a></li>
                 <li><a target="_blank" href="https://www.facebook.com/freifunkrheinneckar"><i class="fa fa-facebook-square"></i> Facebook</a></li>
