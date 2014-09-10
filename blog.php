@@ -39,6 +39,7 @@
     <div class="row">
         <div class="col-sm-8">
             <h1>Blog</h1>
+            <p>Wenn du immer auf dem Laufenden bleiben willst, kannst du unseren Blog auch als <a href="https://www.ffrn.de/blog/?feed=rss2">RSS Feed</a> abonnieren.</p>
             <hr>
             <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
