@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fa/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Blog | Freifunk Rhein-Neckar</title>
+    <title>News | Freifunk Rhein-Neckar</title>
     <?php
         define('WP_USE_THEMES', false);
         require('blog/wp-blog-header.php');
@@ -27,10 +27,11 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="die_idee.html">Die Idee</a></li>
                 <li><a href="mitmachen.html">Mitmachen</a></li>
-                <li><a target="_blank" href="https://w.ffrn.de">Wiki</a></li>
-                <li class="active"><a href="blog.php">Blog</a></li>
+                <li class="active"><a href="news.php">News</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de">Wiki</a></li>
                 <li><a href="https://forum.ffrn.de" target="_blank">Forum</a></li>
+                <li><a href="http://map.ffrn.de" target="_blank">Karte</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
         </div>
@@ -40,13 +41,13 @@
 <div class="container main blog">
     <div class="row">
         <div class="col-sm-8">
-            <h1>Blog</h1>
+            <h1>News</h1>
             <p>Wenn du immer auf dem Laufenden bleiben willst, kannst du unseren Blog auch als <a href="https://www.ffrn.de/blog/?feed=rss2">RSS Feed</a> abonnieren.</p>
             <hr>
             <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
             <div class="panel panel-default">
-                <div class="panel-heading"><h4><a href="blog.php?p=<?php the_ID(); ?>" rel="bookmark"><?php the_title(); ?></a></h4></div>
+                <div class="panel-heading"><h4><a href="news.php?p=<?php the_ID(); ?>" rel="bookmark"><?php the_title(); ?></a></h4></div>
                 <div class="panel-body">
                     <section><?php the_content(); ?></section>
                     <div class="meta">Geschrieben am <span class="date"><?php the_date();?></span> von <span class="author"><?php the_author();?></span></div>
