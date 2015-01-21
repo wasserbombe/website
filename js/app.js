@@ -25,6 +25,11 @@ $(document).ready(function () {
 	setInterval(function() {
 		app.getCurrentStats();
 	},15 * 1000);
+
+    var map = app.View.Map(jQuery);
+    map.init();
+    app.processNodes(map);
+
   })
   .on("usersupdated", function () {
 		console.log(app.data.onlineUserCount);
@@ -64,6 +69,47 @@ app.getCurrentStats = function () {
     }
     
   });
+};
+
+app.processNodes = function (map) {
+    if(map) {
+        $.get("proxy.php",function(json) {
+            var data = JSON.parse(json);
+            var date = new Date(data.meta.timestamp);
+
+            data.nodes.forEach(function(node){
+                var lat, long, online, name, category;
+                // Get Data out of the node.
+                if(node.geo) {
+                    lat = node.geo[0];
+                    long = node.geo[1];
+                    if(node.flags) {
+                        online = node.flags.online;
+                    }
+                    if(node.name){
+                        name = node.name;
+                    }
+                    // Category:
+                    if(online) {
+                        category = 1;
+                    } else {
+                        category = 2;
+                    }
+
+                    map.addClusterMarker(lat,long,category,name);
+                }
+
+
+
+
+
+
+
+            });
+
+        });
+    }
+
 };
 
 // TODO: Ajax Fail abfangen, 
