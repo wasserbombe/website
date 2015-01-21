@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fa/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
     <title>Kontakt | Freifunk Rhein-Neckar</title>
 </head>
 <body>
@@ -23,8 +24,11 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="die_idee.html">Die Idee</a></li>
                 <li><a href="mitmachen.html">Mitmachen</a></li>
-                <li><a href="blog.php">Blog</a></li>
+                <li><a href="news.php">News</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de">Wiki</a></li>
+                <li><a href="https://forum.ffrn.de" target="_blank">Forum</a></li>
+                <li><a href="http://map.ffrn.de" target="_blank">Karte</a></li>
                 <li class="active"><a href="kontakt.html">Kontakt</a></li>
             </ul>
         </div>
@@ -37,14 +41,47 @@
             <h1>Kontakt</h1>
             <p>Kommunikation ist unser größtes Anliegen also scheue dich nicht, auch wegen kleiner Fragen mit uns Kontakt aufzunehmen.<br>
             Du kannst uns dabei über verschiedene Wege erreichen.</p><br>
-            <h4><i class="fa fa-paper-plane"></i> Die Mailingliste</h4>
-            <p>Die Mailingliste ist die beste und schnellste Möglichkeit mit großen Teilen der Community in Kontakt zu kommen und Probleme zu diskutieren. Außerdem kann dir hier meist schnell geholfen werden wenn du mal ein Problem haben solltest. Anmelden kannst du dich hier: <a href="https://lists.freifunk-rhein-neckar.de/">https://lists.freifunk-rhein-neckar.de/</a></p><br>
-            <h4><i class="fa fa-comments-o"></i> IRC</h4>
-            <p>Einige von uns findest du auch in unserem IRC Channel <strong>#freifunk-rhein-neckar</strong> im Hackint IRC Netz (irc.hackint.org).</p><br>
-            <h4><i class="fa fa-twitter"></i> Twitter</h4>
-            <p>Auf Twitter kannst du uns über den Account <a href="https://twitter.com/FFRheinNeckar">@FFRheinNeckar</a> folgen und bekommst so immer die neuesten Informationen</p><br>
-            <h4>Freifunk Treffen</h4>
-            <p>Außerdem gibt es noch die regelmäßigen Freifunk Treffen. Hier Treffen wir uns, um in angenhmer Atmosphäre aktuelle Ideen, Probleme uns vieles mehr zu besprechen und bei Bedarf auch Router zu flashen. Wenn du uns also mal persönlich kennen lernen willst, bis du herzlich eingeladen mal vorbei zu schauen</p>
+            <div class="col-sm-6 mailform">
+                <h4><i class="fa fa-question-circle"></i> Anfrage</h4>
+                    <p>Du hast eine Frage und möchstest nicht gleich unsere Mailingliste abonnieren. Dann schreib uns einfach eine Mail an <a href="mailto:info@freifunk-rhein-neckar.de">info@freifunk-rhein-neckar.de</a></p>
+                <br>
+                <h4><i class="fa fa-paper-plane"></i> Die Mailingliste</h4>
+                <p>Die Mailingliste ist die beste und schnellste Möglichkeit mit großen Teilen der Community in Kontakt zu kommen und Probleme zu diskutieren. Außerdem kann dir hier meist schnell geholfen werden wenn du mal ein Problem haben solltest. Anmelden kannst du dich hier: </p><br>
+
+                <form id="mailinglistsignup" class="" method="post" role="form" action="https://lists.ffrn.de/subscribe/list">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="Name oder Alias" name="fullname" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control input-lg" placeholder="E-Mail" />
+                    </div>
+                    <div class="form-group">
+
+                        <input type="password" class="form-control input-lg" placeholder="Passwort" name="pw" />
+
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  class="form-control input-lg hidden" placeholder="Passwort bestätigen" name="pw-conf" />
+                        <input type="password"  class="form-control input-lg" placeholder="Passwort bestätigen" name="conf" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">In die Mailingliste eintragen.</button>
+                    </div>
+                </form>
+                <p>Um mit den Leuten auf der Mailingliste zu schreiben, sende deine Nachricht an <a href="mailto:list@lists.ffrn.de">list@lists.ffrn.de</a>. Sie wird an alle Abonnenten verteilt.</p>
+            </div>
+            <div class="col-sm-6">
+                <h4><i class="fa fa-comments-o"></i> IRC</h4>
+                <p>Einige von uns findest du auch in unserem IRC Channel <strong>#freifunk-rhein-neckar</strong> im Hackint IRC Netz (irc.hackint.org).</p><br>
+                <h4><i class="fa fa-twitter"></i> Twitter</h4>
+                <p>Auf Twitter kannst du uns über den Account <a target="_blank" href="https://twitter.com/FFRheinNeckar">@FFRheinNeckar</a> folgen und bekommst so immer die neuesten Informationen</p><br>
+                <h4><i class="fa fa-facebook"> Facebook</i></h4>
+                <p>Auch auf Facebook findest du uns, wenn du nach <a target="_blank" href="https://www.facebook.com/freifunkrheinneckar">"Freifunk Rhein-Neckar"</a> suchst. Wenn du uns mit "Gefällt mir" markierst, erhälst du die neusten News direkt in deinem Stream.</p><br>
+                <h4><i class="fa fa-users"></i> Freifunk Treffen</h4>
+                <p>Außerdem gibt es noch die regelmäßigen Freifunk Treffen. Hier Treffen wir uns, um in angenhmer Atmosphäre aktuelle Ideen, Probleme uns vieles mehr zu besprechen und bei Bedarf auch Router zu flashen. Wenn du uns also mal persönlich kennen lernen willst, bis du herzlich eingeladen mal vorbei zu schauen</p><br>
+                <h4><i class="fa fa-user"></i> Persönlicher Ansprechpartner</h4>
+                <p>Du suchst einen persönlichen Ansprechpartner, dann findest du hier eine Liste mit <a target="_blank" href="https://w.ffrn.de/kontakt">Kontaktdaten</a> von Freifunkern die dir gerne helfen.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -67,20 +104,22 @@
             <h4>Links</h4>
             <hr>
             <ul>
-                <li><a href="http://map.freifunk-rhein-neckar.de/">Map</a></li>
-                <li><a href="https://w.ffrn.de">Wiki</a></li>
-                <li><a href="http://fw.freifunk-rhein-neckar.de">Firmware Download</a></li>
-                <li><a href="https://register.freifunk-rhein-neckar.de/">Knotenverwaltung</a></li>
+                <li><a target="_blank" href="http://map.freifunk-rhein-neckar.de/">Map</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de">Wiki</a></li>
+                <li><a target="_blank" href="http://fw.freifunk-rhein-neckar.de">Firmware Download</a></li>
+                <li><a target="_blank" href="https://register.freifunk-rhein-neckar.de/">Knotenverwaltung</a></li>
             </ul>
         </div>
         <div class="col-sm-4 footer-links footer-social">
             <h4>Social & Kontakt</h4>
             <hr>
             <ul>
-                <li><a href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
-                <li><a href="irc://irc.hackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
-                <li><a href="https://lists.freifunk-rhein-neckar.de/"><i class="fa fa-paper-plane"></i> Mailing Liste</a></li>
-                <li><a href="https://w.ffrn.de/doku.php/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
+                <li><a target="_blank" href="irc://irc.gackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
+                <li><a target="_blank" href="https://lists.ffrn.de/"><i class="fa fa-paper-plane"></i> Mailingliste</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
+                <li><a target="_blank" href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
+                <li><a target="_blank" href="https://www.facebook.com/freifunkrheinneckar"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+                <li><a target="_blank" href="https://github.com/Freifunk-Rhein-Neckar"><i class="fa fa-github"></i> GitHub</a></li>
             </ul>
         </div>
     </div>
@@ -89,5 +128,72 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/headroom.min.js"></script>
 <script src="js/headroom.conf.js"></script>
+<script src="js/bootstrapValidator.js"></script>
+<script src="js/language/de_DE.js"></script>
+<script>
+    // Form Validation
+    $(document).ready(function () {
+        console.log("ready");
+        console.log($);
+
+         $('input[name="conf"]').change(function () {
+            var val = $('input[name="conf"]').val();
+            $('input[name="pw-conf"]').val(val);
+        });
+
+        var form = $('#mailinglistsignup').bootstrapValidator({
+            live: 'enabled',
+
+            submitButtons: 'button[type="submit"]',
+            trigger: null,
+            group: '.form-group',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Die Email Adresse wird benötigt und darf nicht leer sein.'
+                        },
+                        emailAddress: {
+                            message: 'Bitte eine gültige Email Adresse eingeben!'
+                        }
+                    }
+                },
+                fullname: {
+                  validators: {
+                      notEmpty: {
+                          message: 'Bitte gebe einen Namen oder Alias ein.'
+                      }
+                  }
+                },
+                pw: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Bitte wähle ein Passwort!'
+                        }
+                    }
+                },
+                conf: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Bitte bestätige dein Passwort!'
+                        },
+                        identical: {
+                            field: 'pw',
+                            message: 'Das Passwort stimmt nicht mit der Bestätigung überein!'
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+
+</script>
+
 </body>
 </html>

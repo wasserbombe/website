@@ -39,7 +39,7 @@ nav ul li a:hover {
     position: relative;
 }
 
-@media (min-width: 768px){
+@media (min-width: 992px){
 .container.main {
     min-height: calc(100% - 100px);
     margin-top: 100px;
@@ -74,6 +74,10 @@ nav ul li a:hover {
 .panel-title>a:hover {
     color: #ff4a59;
     text-decoration: none;
+}
+
+.mailform {
+    padding-left: 0;
 }
 
 footer {
@@ -147,7 +151,7 @@ footer .footer-social i {
     color: #ff4a59;
 }
 
-@media (min-width: 768px){
+@media (min-width: 992px){
 
 .navbar-brand img {
     height: 90px;
@@ -203,12 +207,16 @@ footer .footer-social i {
     margin: 15px 0;
 }
 
-.date, .author {
-    color: #ff4a59;
-}
-
 .blog h4 {
     margin: 5px;
+}
+
+.blog h4 a {
+    color: #333;
+}
+
+.blog h4 a:hover {
+    color: #ff4a59;
 }
 
 .blog .meta {
@@ -238,4 +246,18 @@ text-align: right;
 .blog img {
     width: 100%;
     height: auto;
+}
+
+.btn-primary {
+    background-color: #ff4a59;
+    border-color: #ff4a59;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #ff1e36;
+    border-color: #ff1e36;
+}
+
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active {
+    background-color: #ff6e7a;
+    border-color: #ff6e7a;
 }

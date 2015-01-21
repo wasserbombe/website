@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fa/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Blog | Freifunk Rhein-Neckar</title>
+    <title>News | Freifunk Rhein-Neckar</title>
     <?php
         define('WP_USE_THEMES', false);
         require('blog/wp-blog-header.php');
@@ -27,8 +27,11 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="die_idee.html">Die Idee</a></li>
                 <li><a href="mitmachen.html">Mitmachen</a></li>
-                <li class="active"><a href="blog.php">Blog</a></li>
+                <li class="active"><a href="news.php">News</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de">Wiki</a></li>
+                <li><a href="https://forum.ffrn.de" target="_blank">Forum</a></li>
+                <li><a href="http://map.ffrn.de" target="_blank">Karte</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
         </div>
@@ -38,12 +41,13 @@
 <div class="container main blog">
     <div class="row">
         <div class="col-sm-8">
-            <h1>Blog</h1>
+            <h1>News</h1>
+            <p>Wenn du immer auf dem Laufenden bleiben willst, kannst du unseren Blog auch als <a href="https://www.ffrn.de/blog/?feed=rss2">RSS Feed</a> abonnieren.</p>
             <hr>
             <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
             <div class="panel panel-default">
-                <div class="panel-heading"><h4><?php the_title(); ?></h4></div>
+                <div class="panel-heading"><h4><a href="news.php?p=<?php the_ID(); ?>" rel="bookmark"><?php the_title(); ?></a></h4></div>
                 <div class="panel-body">
                     <section><?php the_content(); ?></section>
                     <div class="meta">Geschrieben am <span class="date"><?php the_date();?></span> von <span class="author"><?php the_author();?></span></div>
@@ -79,20 +83,22 @@
             <h4>Links</h4>
             <hr>
             <ul>
-                <li><a href="http://map.freifunk-rhein-neckar.de/">Map</a></li>
-                <li><a href="https://w.ffrn.de">Wiki</a></li>
-                <li><a href="http://fw.freifunk-rhein-neckar.de">Firmware Download</a></li>
-                <li><a href="https://register.freifunk-rhein-neckar.de/">Knotenverwaltung</a></li>
+                <li><a target="_blank" href="http://map.freifunk-rhein-neckar.de/">Map</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de">Wiki</a></li>
+                <li><a target="_blank" href="http://fw.freifunk-rhein-neckar.de">Firmware Download</a></li>
+                <li><a target="_blank" href="https://register.freifunk-rhein-neckar.de/">Knotenverwaltung</a></li>
             </ul>
         </div>
         <div class="col-sm-4 footer-links footer-social">
             <h4>Social & Kontakt</h4>
             <hr>
             <ul>
-                <li><a href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
-                <li><a href="irc://irc.hackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
-                <li><a href="https://lists.freifunk-rhein-neckar.de/"><i class="fa fa-paper-plane"></i> Mailing Liste</a></li>
-                <li><a href="https://w.ffrn.de/doku.php/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
+                <li><a target="_blank" href="irc://irc.hackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
+                <li><a target="_blank" href="https://lists.ffrn.de/"><i class="fa fa-paper-plane"></i> Mailingliste</a></li>
+                <li><a target="_blank" href="https://w.ffrn.de/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
+                <li><a target="_blank" href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
+                <li><a target="_blank" href="https://www.facebook.com/freifunkrheinneckar"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+                <li><a target="_blank" href="https://github.com/Freifunk-Rhein-Neckar"><i class="fa fa-github"></i> GitHub</a></li>
             </ul>
         </div>
     </div>
