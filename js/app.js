@@ -16,6 +16,7 @@ app.data = {};
 // + These two vars store the current user and node count. Updated every 15s.
 app.data.onlineUserCount = 0;
 app.data.onlineNodeCount = 0;
+app.data.nodeCount = 0;
 app.data.map = null;
 
 // +---------------------------------------------------------------------------
@@ -27,7 +28,7 @@ $(document).ready(function () {
 		app.getCurrentStats();
 	},15 * 1000);
 
-    app.data.map = app.View.Map(jQuery);
+    app.data.map = app.View.Map(jQuery,"map");
     app.data.map.init();
     app.processNodes(app.data.map);
 
@@ -35,6 +36,10 @@ $(document).ready(function () {
   .on("usersupdated", function () {
 		console.log(app.data.onlineUserCount);
 	})
+  .on("nodesupdated", function() {
+        app.data.map.flushCluster();
+        app.processNodes(app.data.map);
+    });
 
 
 
@@ -48,9 +53,12 @@ app.getCurrentStats = function () {
   $.get("proxy.php",function(json) {
     var data = JSON.parse(json);
     var date = new Date(data.meta.timestamp);
-    var nNodes = data.nodes.filter(function(d) {
+    var onlineNodes = data.nodes.filter(function(d) {
       return !d.flags.client && d.flags.online;
       }).length,
+        nNodes = data.nodes.filter(function(d) {
+            return !d.flags.client;
+        }).length,
     nLegacyNodes = data.nodes.filter(function (d) {
       return !d.flags.client && d.flags.online && d.flags.legacy;
       }).length,
@@ -63,10 +71,18 @@ app.getCurrentStats = function () {
     // + When the pased data differs from the current: update the values
     // + and trigger the event.
     if(app.data.onlineUserCount !== (nClients -nLegacyNodes)
-    	&& app.data.onlineNodeCount !== nNodes){
+    	&& app.data.onlineNodeCount !== onlineNodes){
+
       app.data.onlineUserCount = nClients - nLegacyNodes;
-      app.data.onlineNodeCount = nNodes;
+      app.data.onlineNodeCount = onlineNodes;
       $(document).trigger("usersupdated");
+    }
+    if(app.data.nodeCount !== onlineNodes
+        && app.data.onlineNodeCount !== onlineNodes) {
+
+        app.data.nodeCount = nNodes;
+        app.data.onlineNodeCount = onlineNodes;
+        $(document).trigger("nodesupdated");
     }
     
   });
