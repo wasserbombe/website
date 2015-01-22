@@ -16,7 +16,8 @@ app.data = {};
 // + These two vars store the current user and node count. Updated every 15s.
 app.data.onlineUserCount = 0;
 app.data.onlineNodeCount = 0;
-app.data.nodeCount = 0;
+app.data.nodesTotal = 0;
+app.data.nodesWithGeo = 0;
 app.data.map = null;
 
 // +---------------------------------------------------------------------------
@@ -30,15 +31,21 @@ $(document).ready(function () {
 
     app.data.map = app.View.Map(jQuery,"map");
     app.data.map.init();
-    app.processNodes(app.data.map);
 
   })
   .on("usersupdated", function () {
-		console.log(app.data.onlineUserCount);
+		console.log("Online users: " + app.data.onlineUserCount);
+
 	})
-  .on("nodesupdated", function() {
+  .on("geonodesupdated", function() {
+        console.log("Online Nodes: " + app.data.onlineNodeCount);
+        console.log("Nodes with GEO: " + app.data.nodesWithGeo);
+
         app.data.map.flushCluster();
         app.processNodes(app.data.map);
+    })
+    .on("nodesupdated", function () {
+        console.log("Nodes: " + app.data.nodesTotal);
     });
 
 
@@ -56,8 +63,8 @@ app.getCurrentStats = function () {
     var onlineNodes = data.nodes.filter(function(d) {
       return !d.flags.client && d.flags.online;
       }).length,
-        nNodes = data.nodes.filter(function(d) {
-            return !d.flags.client;
+    nNodes = data.nodes.filter(function(d) {
+            return !d.flags.client && !d.flags.gateway;
         }).length,
     nLegacyNodes = data.nodes.filter(function (d) {
       return !d.flags.client && d.flags.online && d.flags.legacy;
@@ -67,24 +74,26 @@ app.getCurrentStats = function () {
       }).length,
     nClients = data.nodes.filter(function(d) {
       return d.flags.client && d.flags.online;
-      }).length;
+      }).length,
+    geoNodes = data.nodes.filter(function(d) {
+            return d.geo;
+        }).length;
     // + When the pased data differs from the current: update the values
     // + and trigger the event.
-    if(app.data.onlineUserCount !== (nClients -nLegacyNodes)
-    	&& app.data.onlineNodeCount !== onlineNodes){
+    if(app.data.onlineUserCount !== (nClients -nLegacyNodes)){
 
       app.data.onlineUserCount = nClients - nLegacyNodes;
-      app.data.onlineNodeCount = onlineNodes;
       $(document).trigger("usersupdated");
     }
-    if(app.data.nodeCount !== onlineNodes
-        && app.data.onlineNodeCount !== onlineNodes) {
-
-        app.data.nodeCount = nNodes;
+    if(app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
         app.data.onlineNodeCount = onlineNodes;
+        app.data.nodesWithGeo = geoNodes;
+        $(document).trigger("geonodesupdated");
+    }
+    if(app.data.nodesTotal !== nNodes) {
+        app.data.nodesTotal = nNodes;
         $(document).trigger("nodesupdated");
     }
-    
   });
 };
 
