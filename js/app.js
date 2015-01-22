@@ -15,7 +15,8 @@ app.data = {};
 
 // + These two vars store the current user and node count. Updated every 15s.
 app.data.onlineUserCount = 0;
-app.data.onlineNodeCount = 0; 
+app.data.onlineNodeCount = 0;
+app.data.map = null;
 
 // +---------------------------------------------------------------------------
 // + Register Events (behaviur)
@@ -26,9 +27,9 @@ $(document).ready(function () {
 		app.getCurrentStats();
 	},15 * 1000);
 
-    var map = app.View.Map(jQuery);
-    map.init();
-    app.processNodes(map);
+    app.data.map = app.View.Map(jQuery);
+    app.data.map.init();
+    app.processNodes(app.data.map);
 
   })
   .on("usersupdated", function () {
@@ -75,7 +76,7 @@ app.processNodes = function (map) {
     if(map) {
         $.get("proxy.php",function(json) {
             var data = JSON.parse(json);
-            var date = new Date(data.meta.timestamp);
+
 
             data.nodes.forEach(function(node){
                 var lat, long, online, name, category;
@@ -98,12 +99,6 @@ app.processNodes = function (map) {
 
                     map.addClusterMarker(lat,long,category,name);
                 }
-
-
-
-
-
-
 
             });
 
