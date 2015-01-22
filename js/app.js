@@ -8,6 +8,9 @@
 // +---------------------------------------------------------------------------
 'use strict'
 
+// + Set Image Path for Leaflet:
+L.Icon.Default.imagePath = "images/";
+
 // + Set up the Namespace for Freifunk.
 var app = {};
 // + Set up the "global" data store for the app
