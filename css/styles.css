@@ -19,15 +19,13 @@ a:hover {
     color: #ff4a59;
 }
 
-
-
 #index {
     background: url("../images/bg.jpg") no-repeat fixed;
     background-size: cover;
 }
 /* #map { height: 500px; } */
 #map{
-height: 500px;
+    height: 100vh;
 }
 nav ul li a:hover {
     background: #abc;
@@ -36,6 +34,7 @@ nav ul li a:hover {
 .navbar-nav .active a {
     color: #222;
 }
+
 
 .container.main {
     min-height: calc(100% - 50px);
@@ -81,6 +80,10 @@ nav ul li a:hover {
     text-decoration: none;
 }
 
+.leaflet-top {
+    top: 120px;
+}
+
 .mailform {
     padding-left: 0;
 }
@@ -89,6 +92,10 @@ footer {
     margin-top: 20px;
     background: #262626;
     color: #818181;
+}
+
+footer.nomargintop {
+    margin-top: 0px;
 }
 
 footer h4 {
@@ -181,6 +188,16 @@ footer .footer-social i {
 .pull {
     float: right;
 }
+.blur {
+    height: 100px;
+    -webkit-filter: blur(40px);
+    -moz-filter: blur(40px);
+    -ms-filter: blur(40px);
+    -o-filter: blur(40px);
+    filter: blur(40px);
+    background: rgba(250,250,250,0.9)!important;
+}
+
 }
 
 

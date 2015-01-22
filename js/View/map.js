@@ -15,10 +15,9 @@ app.View.Map = function ($, mapID) {
         pruneCluster = {},
         markers = {},
         mapID = mapID || "",
-
         init = function (options) {
             // + Init the Map and set View bounds to center of Mannheim.
-            map = L.map(mapID).setView([49.47704787438876, 8.5638427734375], 10);
+            map = L.map(mapID, options).setView([49.47704787438876, 8.5638427734375]);
 
             // + Set the tile Layer and add to map.
             //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

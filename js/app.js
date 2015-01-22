@@ -29,8 +29,14 @@ $(document).ready(function () {
 		app.getCurrentStats();
 	},15 * 1000);
 
+    var options = {
+        zoom: 10,
+        center: [51.505,-0.09],
+        scrollWheelZoom: false
+    };
+
     app.data.map = app.View.Map(jQuery,"map");
-    app.data.map.init();
+    app.data.map.init(options);
 
   })
   .on("usersupdated", function () {
