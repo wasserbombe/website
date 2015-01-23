@@ -44,16 +44,20 @@ $(document).ready(function () {
   })
   .on("usersupdated", function () {
 		console.log("Online users: " + app.data.onlineUserCount);
-
+        $('#users-online').text(app.data.onlineUserCount);
 	})
   .on("geonodesupdated", function() {
         console.log("Online Nodes: " + app.data.onlineNodeCount);
         console.log("Nodes with GEO: " + app.data.nodesWithGeo);
 
+        $('#nodes-online').text(app.data.onlineNodeCount);
+        $('#nodes-with-geolocation').text(app.data.nodesWithGeo);
+
         app.data.map.flushCluster();
         app.processNodes(app.data.map);
     })
     .on("nodesupdated", function () {
+        $('#nodes-total').text(app.data.nodesTotal);
         console.log("Nodes: " + app.data.nodesTotal);
     });
 
