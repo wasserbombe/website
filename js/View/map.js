@@ -8,6 +8,8 @@ app.View = app.View || {};
 app.View.Map = function ($, mapID) {
     // ++ Private vars and functions.
 
+
+
     var tagName = 'div',
         lat = 51.505,
         lon = -0.09,
@@ -97,18 +99,81 @@ app.View.Map = function ($, mapID) {
             map.addLayer(pruneCluster);
         }
 
-    var addClusterMarker = function (latitude, longitude, category, name) {
+
+    var escapeHtml = function (string) {
+        var string = string || "";
+        var entityMap = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': '&quot;',
+            "'": '&#39;',
+            "/": '&#x2F;'
+        };
+        return String(string).replace(/[&<>"'\/]/g, function (s) {
+            return entityMap[s];
+        });
+    };
+
+    var addClusterMarker = function (latitude, longitude, online, name, clientcount, lastseen) {
         // + Get all the Arguments.
         var latitude = latitude,
             longitude = longitude,
             category = category || 0,
-            name = name || "";
+            name = name || "",
+            category = online ? 1 : 2;
+            iconOnline = L.icon({
+                iconUrl: '../images/ffrn_logo_green.svg',
+                iconRetinaUrl: '../images/ffrn_logo_green.svg',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8],
+                popupAnchor: [1, -5]
+                //shadowUrl: 'my-icon-shadow.png',
+                //shadowRetinaUrl: 'my-icon-shadow@2x.png',
+                //shadowSize: [68, 95],
+                //shadowAnchor: [22, 94]
+            }),
+            iconOffline = L.icon({
+                iconUrl: '../images/ffrn_logo_red.svg',
+                iconRetinaUrl: '../images/ffrn_logo_red.svg',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8],
+                popupAnchor: [1, -5]
+                //shadowUrl: 'my-icon-shadow.png',
+                //shadowRetinaUrl: 'my-icon-shadow@2x.png',
+                //shadowSize: [68, 95],
+                //shadowAnchor: [22, 94]
+            }),
+            helper = app.Helper($);
 
         if (latitude && longitude) {
+
+            var popupString = "<b>" + escapeHtml(name) + "</b><br/>";
+
+            if(online) {
+                // Work arround the "to much clients in nodes.json" bug.
+                clientcount = clientcount - 1;
+                popupString = popupString +
+                    "Geräte verbunden: " + clientcount + "<br/>";
+            }
+            if(!online) {
+                offlineTime = helper.time((new Date() - new Date(lastseen)));
+                popupString = popupString +
+                    "Dieser Knoten ist offline, daher ist an diesem Standort kein  freies Internet verfügbar.";
+            }
+
 
             var marker = new PruneCluster.Marker(latitude, longitude);
             marker.category = category;
             marker.data.name = name;
+            marker.data.popup = popupString;
+            marker.data.icon = online ? iconOnline : iconOffline;
+
+
+
+
+
+
             pruneCluster.RegisterMarker(marker);
 
         }

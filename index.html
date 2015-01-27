@@ -45,10 +45,18 @@
 </nav>
 
 <div id="statusbar">
-    <div class="container">
-        <p><img height="16px" src="images/ffrn_logo_green.svg" /> <span id="nodes-online"></span> <img height="16px" src="images/ffrn_logo.svg" />  <span id="nodes-total"></span>
-        Mit Koordinaten versehen: <span id="nodes-with-geolocation"></span>
-        Gerade sind <span id="users-online">0</span> Benutzer online.</p>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-10 center-block"">
+                <p>
+                                <span class="glyphicon glyphicon-user"></span> <span id="users-online">0</span> Benutzer online.
+                                <img height="16px" src="images/ffrn_logo_green.svg" data-toggle="tooltip" data-placement="top" title="Knoten online:"/> <span id="nodes-online"></span> Knoten online.
+                                <img height="16px" src="images/ffrn_logo_red.svg" data-toggle="tooltip" data-placement="top" title="Knoten offline:"/> <span id="nodes-offline"></span> Knoten offline.
+                                <img height="16px" src="images/ffrn_logo.svg" data-toggle="tooltip" data-placement="top" title="Knoten gesammt:"/>  <span id="nodes-total"></span> Knoten gesammt.
+                                <span class="glyphicon glyphicon-map-marker"> </span> <span id="nodes-with-geolocation"> </span> Knoten auf der Karte.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <footer class="nomargintop">
@@ -96,6 +104,7 @@
 <script src="js/headroom.min.js"></script>
 <script src="js/headroom.conf.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/View/App.Helper.js"></script>
 <script src="js/View/map.js" ></script>
 </body>
 </html>

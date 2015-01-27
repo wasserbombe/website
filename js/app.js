@@ -19,6 +19,7 @@ app.data = {};
 // + These two vars store the current user and node count. Updated every 15s.
 app.data.onlineUserCount = 0;
 app.data.onlineNodeCount = 0;
+app.data.offlineNodeCount = 0;
 app.data.nodesTotal = 0;
 app.data.nodesWithGeo = 0;
 app.data.map = null;
@@ -27,6 +28,7 @@ app.data.map = null;
 // + Register Events (behaviur)
 // +---------------------------------------------------------------------------
 $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip()
 	app.getCurrentStats();
 	setInterval(function() {
 		app.getCurrentStats();
@@ -51,6 +53,7 @@ $(document).ready(function () {
         console.log("Nodes with GEO: " + app.data.nodesWithGeo);
 
         $('#nodes-online').text(app.data.onlineNodeCount);
+        $('#nodes-offline').text(app.data.offlineNodeCount);
         $('#nodes-with-geolocation').text(app.data.nodesWithGeo);
 
         app.data.map.flushCluster();
@@ -101,6 +104,7 @@ app.getCurrentStats = function () {
     if(app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
         app.data.onlineNodeCount = onlineNodes;
         app.data.nodesWithGeo = geoNodes;
+        app.data.offlineNodeCount = nNodes - onlineNodes;
         $(document).trigger("geonodesupdated");
     }
     if(app.data.nodesTotal !== nNodes) {
@@ -128,14 +132,9 @@ app.processNodes = function (map) {
                     if(node.name){
                         name = node.name;
                     }
-                    // Category:
-                    if(online) {
-                        category = 1;
-                    } else {
-                        category = 2;
-                    }
 
-                    map.addClusterMarker(lat,long,category,name);
+
+                    map.addClusterMarker(lat,long,online,name, node.clientcount, node.lastseen);
                 }
 
             });
