@@ -2,6 +2,26 @@
     border-radius: 0 !important;
 }
 
+.mapbox {
+    position: relative;
+}
+
+.mapbox .overlay {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    z-index: 314159;
+    pointer-events: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+}
+
+.mapbox .overlay .btn {
+    pointer-events: initial;
+}
+
+
 html, body {
     height: 100%;
 }
@@ -19,14 +39,16 @@ a:hover {
     color: #ff4a59;
 
 }
-
+h1 {
+    font-size: 26px;
+}
 #index {
     background: url("../images/bg.jpg") no-repeat fixed;
     background-size: cover;
 }
 /* #map { height: 500px; } */
 #map{
-    height: 95vh;
+    height: calc(100vh - 40px);
 }
 nav ul li a:hover {
     background: #abc;
@@ -55,6 +77,9 @@ nav ul li a:hover {
     margin-top: 100px;
 
 }
+    h1 {
+        font-size: 36px;
+    }
 }
 
 #index .main .row {
@@ -88,7 +113,8 @@ nav ul li a:hover {
 }
 
 .leaflet-top {
-    top: 120px;
+    top:50%;
+
 }
 
 .mailform {
@@ -171,7 +197,9 @@ footer .footer-social i {
 }
 
 @media (min-width: 992px){
-
+    h1 {
+        font-size: 36px;
+    }
 .navbar-brand img {
     height: 90px;
 }
