@@ -69,7 +69,8 @@ nav ul li a:hover {
     min-height: 40px;
     padding-top: 12px;
     background: #818181;
-    color: #ffffff
+    color: #ffffff;
+    text-align: center;
 }
 @media (min-width: 992px){
 .container.main {
