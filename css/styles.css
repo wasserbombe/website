@@ -8,9 +8,9 @@
 
 .mapbox .overlay {
     position: absolute;
-    top: 10px;
+    top: 25px;
     left: 0;
-    z-index: 314159;
+    z-index: 2;
     pointer-events: none;
     margin-left: auto;
     margin-right: auto;
