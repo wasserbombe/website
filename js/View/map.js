@@ -159,7 +159,7 @@ app.View.Map = function ($, mapID) {
             if(!online) {
                 offlineTime = helper.time((new Date() - new Date(lastseen)));
                 popupString = popupString +
-                    "Dieser Knoten ist offline, daher ist an diesem Standort kein  freies Internet verfügbar.";
+                    "Dieser Knoten ist offline, daher ist an diesem Standort kein Freifunk verfügbar.";
             }
 
 
