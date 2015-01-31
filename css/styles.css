@@ -14,7 +14,7 @@
     pointer-events: none;
     margin-left: auto;
     margin-right: auto;
-    width: 100vw;
+    width: 100%;
 }
 
 .mapbox .overlay .btn {
