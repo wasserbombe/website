@@ -56,13 +56,17 @@
                         <input type="text" name="email" class="form-control input-lg" placeholder="E-Mail" />
                     </div>
                     <div class="form-group">
+                        <div class="input-group">
 
-                        <input type="password" class="form-control input-lg" placeholder="Passwort" name="pw" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg" type="button" id="toggle-password">
+                                <span class="glyphicon glyphicon-eye-open" ></span>
+                            </button>
+                        </span>
+                            <input type="password" class="form-control input-lg" placeholder="Passwort" name="pw" />
+                        </div>
 
-                    </div>
-                    <div class="form-group">
                         <input type="password"  class="form-control input-lg hidden" placeholder="Passwort bestätigen" name="pw-conf" />
-                        <input type="password"  class="form-control input-lg" placeholder="Passwort bestätigen" name="conf" />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg btn-block">In die Mailingliste eintragen.</button>
@@ -133,13 +137,33 @@
 <script>
     // Form Validation
     $(document).ready(function () {
-        console.log("ready");
-        console.log($);
-
-         $('input[name="conf"]').change(function () {
-            var val = $('input[name="conf"]').val();
+        /**
+         * The Mailinglist requires the user to enter the Password twice.
+         * Because we only have one password field, with the ability to toggle
+         * between password and text, we need to put everything from the password
+         * field to the validation.
+         */
+         $('input[name="pw"]').change(function () {
+            var val = $('input[name="pw"]').val();
             $('input[name="pw-conf"]').val(val);
         });
+
+        $('#toggle-password').click(function() {
+           togglePassword($('input[name="pw"]')[0])
+           $(this).children().first()
+                   .toggleClass('glyphicon-eye-open')
+                   .toggleClass('glyphicon-eye-close');
+        });
+
+        var togglePassword = function($field) {
+          if ($field) {
+              if($field.type === 'password') {
+                  $field.type = 'text';
+              } else {
+                  $field.type = 'password';
+              }
+          }
+        };
 
         var form = $('#mailinglistsignup').bootstrapValidator({
             live: 'enabled',
@@ -174,17 +198,6 @@
                     validators: {
                         notEmpty: {
                             message: 'Bitte wähle ein Passwort!'
-                        }
-                    }
-                },
-                conf: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Bitte bestätige dein Passwort!'
-                        },
-                        identical: {
-                            field: 'pw',
-                            message: 'Das Passwort stimmt nicht mit der Bestätigung überein!'
                         }
                     }
                 }
