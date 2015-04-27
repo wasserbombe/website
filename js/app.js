@@ -56,7 +56,6 @@ $(document).ready(function () {
         $('#nodes-offline').text(app.data.offlineNodeCount);
         $('#nodes-with-geolocation').text(app.data.nodesWithGeo);
 
-        app.data.map.flushCluster();
         app.processNodes(app.data.map);
     })
     .on("nodesupdated", function () {
@@ -119,7 +118,7 @@ app.processNodes = function (map) {
         $.get("proxy.php",function(json) {
             var data = JSON.parse(json);
 
-
+            map.flushCluster();
             data.nodes.forEach(function(node){
                 var lat, long, online, name, category;
                 // Get Data out of the node.
@@ -132,8 +131,6 @@ app.processNodes = function (map) {
                     if(node.name){
                         name = node.name;
                     }
-
-
                     map.addClusterMarker(lat,long,online,name, node.clientcount, node.lastseen);
                 }
 
