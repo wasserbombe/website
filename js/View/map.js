@@ -194,14 +194,14 @@ app.View.Map = function ($, mapID) {
     var defaultClusterSize = 120;
     // If the user uses toggeling the first time:
     if (!localStorage.isClusteringHidden) {
-      localStorage.isClusteringHidden = "0";
+      localStorage.isClusteringHidden = "no";
     }
-    if (localStorage.isClusteringHidden === "0") {
+    if (localStorage.isClusteringHidden === "no") {
       setClusterSize(-1);
-      localStorage.isClusteringHidden = "1";
+      localStorage.isClusteringHidden = "yes";
     } else {
       setClusterSize(defaultClusterSize);
-      localStorage.isClusteringHidden = "0";
+      localStorage.isClusteringHidden = "no";
     }
   };
 
@@ -209,9 +209,9 @@ app.View.Map = function ($, mapID) {
     var defaultClusterSize = 120;
     // If the user uses toggeling the first time:
     if (!localStorage.isClusteringHidden) {
-      localStorage.isClusteringHidden = "0";
+      localStorage.isClusteringHidden = "no";
     }
-    if (localStorage.isClusteringHidden === "0") {
+    if (localStorage.isClusteringHidden === "no") {
       setClusterSize(defaultClusterSize);
     } else {
       setClusterSize(-1);
