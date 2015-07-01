@@ -52,9 +52,12 @@ $(document).ready(function () {
         console.log("Online Nodes: " + app.data.onlineNodeCount);
         console.log("Nodes with GEO: " + app.data.nodesWithGeo);
 
-        $('#nodes-online').text(app.data.onlineNodeCount);
-        $('#nodes-offline').text(app.data.offlineNodeCount);
-        $('#nodes-with-geolocation').text(app.data.nodesWithGeo);
+        $('#nodes-online').text(app.data.onlineNodeCount + " (" + app.getPercent(
+          app.data.nodesTotal,app.data.onlineNodeCount).toFixed(2).replace(".",",") + "%)");
+        $('#nodes-offline').text(app.data.offlineNodeCount + " (" + app.getPercent(
+          app.data.nodesTotal,app.data.offlineNodeCount).toFixed(2).replace(".",",") + "%)");
+        $('#nodes-with-geolocation').text(app.data.nodesWithGeo + " (" + app.getPercent(
+          app.data.nodesTotal,app.data.nodesWithGeo).toFixed(2).replace(".",",") + "%)");
 
         app.processNodes(app.data.map);
     })
@@ -111,6 +114,16 @@ app.getCurrentStats = function () {
         $(document).trigger("nodesupdated");
     }
   });
+};
+
+app.getPercent = function(base, share) {
+  if(base && share){
+    return (100 / base) * share;
+  }
+  else {
+    return 0.0;
+  }
+
 };
 
 app.processNodes = function (map) {
