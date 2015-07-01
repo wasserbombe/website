@@ -103,16 +103,15 @@ app.getCurrentStats = function () {
       app.data.onlineUserCount = nClients - nLegacyNodes;
       $(document).trigger("usersupdated");
     }
+    if(app.data.nodesTotal !== nNodes) {
+      app.data.nodesTotal = nNodes;
+      $(document).trigger("nodesupdated");
+    }
     if(app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
         app.data.onlineNodeCount = onlineNodes;
         app.data.nodesWithGeo = geoNodes;
         app.data.offlineNodeCount = nNodes - onlineNodes;
-        app.data.nodesTotal = nNodes;
         $(document).trigger("geonodesupdated");
-    }
-    if(app.data.nodesTotal !== nNodes) {
-        app.data.nodesTotal = nNodes;
-        $(document).trigger("nodesupdated");
     }
   });
 };
