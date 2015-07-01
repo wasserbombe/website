@@ -107,6 +107,7 @@ app.getCurrentStats = function () {
         app.data.onlineNodeCount = onlineNodes;
         app.data.nodesWithGeo = geoNodes;
         app.data.offlineNodeCount = nNodes - onlineNodes;
+        app.data.nodesTotal = nNodes;
         $(document).trigger("geonodesupdated");
     }
     if(app.data.nodesTotal !== nNodes) {
