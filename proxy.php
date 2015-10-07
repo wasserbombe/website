@@ -10,7 +10,7 @@
 // +---------------------------------------------------------------------------
 
 
-$file = file_get_contents("http://map.freifunk-rhein-neckar.de/nodes.json");
+$file = file_get_contents("http://map.gluon.ffrn.de/data/nodes.json");
 echo $file;
 
 ?>

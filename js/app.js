@@ -23,6 +23,7 @@ app.data.offlineNodeCount = 0;
 app.data.nodesTotal = 0;
 app.data.nodesWithGeo = 0;
 app.data.map = null;
+app.data.retrievedFromJson = {};
 
 // +---------------------------------------------------------------------------
 // + Register Events (behaviur)
@@ -76,31 +77,37 @@ $(document).ready(function () {
 // +---------------------------------------------------------------------------
 app.getCurrentStats = function () {
   $.get("proxy.php",function(json) {
-    var data = JSON.parse(json);
-    var date = new Date(data.meta.timestamp);
-    var onlineNodes = data.nodes.filter(function(d) {
-      return !d.flags.client && d.flags.online;
+    app.data.retrievedFromJson = JSON.parse(json);
+
+    var nodes = [];
+    $.each(app.data.retrievedFromJson.nodes, function(index, node){
+      nodes.push(node);
+    });
+
+    var date = new Date(app.data.retrievedFromJson.timestamp);
+    var onlineNodes = nodes.filter(function(d) {
+      return d.flags.online;
       }).length,
-    nNodes = data.nodes.filter(function(d) {
-            return !d.flags.client && !d.flags.gateway;
+    nNodes = nodes.filter(function(d) {
+            return !d.flags.gateway;
         }).length,
-    nLegacyNodes = data.nodes.filter(function (d) {
-      return !d.flags.client && d.flags.online && d.flags.legacy;
-      }).length,
-    nGateways = data.nodes.filter(function(d) {
+    nGateways = nodes.filter(function(d) {
       return d.flags.gateway && d.flags.online;
       }).length,
-    nClients = data.nodes.filter(function(d) {
-      return d.flags.client && d.flags.online;
-      }).length,
-    geoNodes = data.nodes.filter(function(d) {
-            return d.geo;
+      nClients = nodes.reduce(function(previusValue, currentValue){
+        if(typeof(previusValue) !== "number") {
+          previusValue = 0;
+        }
+        return previusValue + currentValue.statistics.clients;
+      }),
+    geoNodes = nodes.filter(function(d) {
+            return d.nodeinfo.location;
         }).length;
     // + When the pased data differs from the current: update the values
     // + and trigger the event.
-    if(app.data.onlineUserCount !== (nClients -nLegacyNodes)){
+    if(app.data.onlineUserCount !== (nClients)){
 
-      app.data.onlineUserCount = nClients - nLegacyNodes;
+      app.data.onlineUserCount = nClients;
       $(document).trigger("usersupdated");
     }
     if(app.data.nodesTotal !== nNodes) {
@@ -128,31 +135,27 @@ app.getPercent = function(base, share) {
 
 app.processNodes = function (map) {
     if(map) {
-        $.get("proxy.php",function(json) {
-            var data = JSON.parse(json);
+            var data = app.data.retrievedFromJson;
 
             map.flushCluster();
-            data.nodes.forEach(function(node){
+          $.each(data.nodes, function(index, node){
                 var lat, long, online, name, category;
                 // Get Data out of the node.
-                if(node.geo) {
-                    lat = node.geo[0];
-                    long = node.geo[1];
+                if(node.nodeinfo.location) {
+                    lat = node.nodeinfo.location.latitude;
+                    long = node.nodeinfo.location.longitude;
                     if(node.flags) {
                         online = node.flags.online;
                     }
-                    if(node.name){
-                        name = node.name;
+                    if(node.nodeinfo){
+                        name = node.nodeinfo.name;
                     }
                     map.addClusterMarker(lat,long,online,name, node.clientcount, node.lastseen);
                 }
 
             });
-
-        });
     }
 
 };
 
-// TODO: Ajax Fail abfangen, 
-// TODO: Render Funktion schreiben, die werte aus dem Data objekt nett visualisiert.
+// TODO: Ajax Fail abfangen,
