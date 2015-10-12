@@ -147,9 +147,9 @@ app.processNodes = function (map) {
           online = node.flags.online;
         }
         if (node.nodeinfo) {
-          name = node.nodeinfo.name;
+          name = node.nodeinfo.hostname;
         }
-        map.addClusterMarker(lat, long, online, name, node.clientcount, node.lastseen);
+        map.addClusterMarker(lat, long, online, name, node.statistics.clients, node.lastseen);
       }
 
     });
