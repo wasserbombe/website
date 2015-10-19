@@ -158,8 +158,6 @@ app.View.Map = function ($, mapID) {
       var popupString = "<b>" + escapeHtml(name) + "</b><br/>";
 
       if (online) {
-        // Work arround the "to much clients in nodes.json" bug.
-        clientcount = clientcount - 1;
         popupString = popupString +
           "Geräte verbunden: " + clientcount + "<br/>";
       }
