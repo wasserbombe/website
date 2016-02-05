@@ -224,6 +224,24 @@ footer .footer-social i {
     border-left-color: #ff4a59;
 }
 
+/* Seite mitmachen.html */
+.iban{
+	padding: 0 2px;
+}
+
+dl.bank dd {
+  display: inline;
+  margin: 0;
+}
+dl.bank dd:after{
+  display: block;
+  content: '';
+}
+dl.bank dt{
+  display: inline-block;
+  min-width: 100px;
+}
+
 /* Bootsrap überschreiben */
 
 .navbar-brand {
