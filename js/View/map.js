@@ -180,7 +180,8 @@ app.View.Map = function ($, mapID) {
 
     }
     // + Every Change on the cluster requires the call of this function:
-    pruneCluster.ProcessView();
+    // - We will do this after we have added all the nodes -> see app.js
+    //pruneCluster.ProcessView();
 
   };
 
@@ -221,12 +222,17 @@ app.View.Map = function ($, mapID) {
   var setClusterSize = function (size) {
     pruneCluster.Cluster.Size = size;
     pruneCluster.ProcessView();
+  };
+
+  var processView = function () {
+    pruneCluster.ProcessView();
   }
   // Public object:
   var public = {
     init: init,
     addClusterMarker: addClusterMarker,
-    flushCluster: flushCluster
+    flushCluster: flushCluster,
+    processView: processView
   }
   return public;
 };

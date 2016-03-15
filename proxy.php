@@ -10,7 +10,8 @@
 // +---------------------------------------------------------------------------
 
 
-$file = file_get_contents("http://map.ffrn.de/data/nodes.json");
+//$file = file_get_contents("http://map.ffrn.de/data/nodes.json");
+$file = file_get_contents("https://map.ffrn.de/data/nodelist.json");
 echo $file;
 
 ?>
