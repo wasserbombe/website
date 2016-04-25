@@ -7,12 +7,20 @@
  */
 $hookSecret = $_ENV['GIT_TOKEN'];  # set NULL to disable check
 
-// The commands
-$commands = array(
-	'git pull origin master',
-	'git submodule sync',
-	'git submodule update'
-);
+
+
+function runCommands(){
+	// The commands
+	$commands = array(
+		'git pull origin master',
+		'git submodule sync',
+		'git submodule update'
+	);
+	foreach($commands AS $command){
+		// Run it
+		$tmp = shell_exec($command);
+	}
+}
 
 
 set_error_handler(function($severity, $message, $file, $line) {
@@ -53,14 +61,6 @@ switch ($_SERVER['HTTP_CONTENT_TYPE']) {
 		break;
 	default:
 		throw new \Exception("Unsupported content type: $_SERVER[HTTP_CONTENT_TYPE]");
-}
-
-
-function runCommands(){
-	foreach($commands AS $command){
-		// Run it
-		$tmp = shell_exec($command);
-	}
 }
 
 # Payload structure depends on triggered event
