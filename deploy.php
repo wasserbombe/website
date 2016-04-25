@@ -72,6 +72,10 @@ switch (strtolower($_SERVER['HTTP_X_GITHUB_EVENT'])) {
 		break;
 	case 'push': runCommands();
 		break;
+	case 'pull_request': runCommands();
+		break;
+	case 'deployment': runCommands();
+		break;
 //	case 'create':
 //		break;
 	default:
