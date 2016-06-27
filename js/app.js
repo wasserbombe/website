@@ -76,8 +76,8 @@ $(document).on("usersupdated", function () {
 // +---------------------------------------------------------------------------
 // + Current Stats
 // + - Use our proxy.php to get the Current number of Users online
-// + @fires: event on document: "usersupdated" Whenever the function completes 
-// + a successfull Ajax request. 
+// + @fires: event on document: "usersupdated" Whenever the function completes
+// + a successfull Ajax request.
 // +---------------------------------------------------------------------------
 app.getCurrentStats = function () {
   $.get("proxy.php", function (json) {
@@ -110,6 +110,7 @@ app.getCurrentStats = function () {
       app.data.onlineNodeCount = onlineNodes;
       app.data.nodesWithGeo = geoNodes;
       app.data.offlineNodeCount = nNodes - onlineNodes;
+      app.data.nodesTotal = nNodes;
       $(document).trigger("geonodesupdated");
     }
     if (app.data.onlineUserCount !== (nClients)) {
