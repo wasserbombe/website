@@ -64,6 +64,7 @@ $(document).on("usersupdated", function () {
     $('#nodes-with-geolocation').text(app.data.nodesWithGeo + " (" +
       app.getPercent(app.data.nodesTotal, app.data.nodesWithGeo)
         .toFixed(2).replace(".", ",") + "%)");
+    $('#nodes-total').text(app.data.nodesTotal);
 
 
   })
