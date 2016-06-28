@@ -4,7 +4,7 @@
 // +  Beschreibung: Application logic, for the onsite Skript.
 // +  KorrektorIn:
 // +  Status:
-// +  Revision: 2014/07/28
+// +  Revision: 2016/06/28
 // +---------------------------------------------------------------------------
 'use strict'
 
