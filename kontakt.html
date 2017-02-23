@@ -8,6 +8,13 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
     <title>Kontakt | Freifunk Rhein-Neckar</title>
+    <link rel="prerender" href="//www.freifunk-rhein-neckar.de/die_idee.html">
+    <link rel="prerender" href="//www.freifunk-rhein-neckar.de/faq.html">
+    <link rel="prerender" href="//www.freifunk-rhein-neckar.de/impressum.html">
+    <link rel="prerender" href="//www.freifunk-rhein-neckar.de/index.html">
+    <link rel="prerender" href="//www.freifunk-rhein-neckar.de/kontakt.html">
+    <link rel="prerender" href="//www.freifunk-rhein-neckar.de/mitmachen.html">
+    <link rel="prerender" href="//forum.ffrn.de">
 </head>
 <body>
 <nav id="navigation" class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -58,36 +65,6 @@
                 <br>
                 <h4><i class="fa fa-question-circle"></i> Anfrage</h4>
                 <p>Du hast eine Frage zum Verein "Freifunk Rhein-Neckar e.V." oder möchtest dich direkt an einen Ansprechpartner des Vereins wenden? Dann schreib uns einfach eine Mail an <a href="mailto:info@freifunk-rhein-neckar.de">info@freifunk-rhein-neckar.de</a></p>
-                <br>
-                <h4><i class="fa fa-paper-plane"></i> Die Mailingliste</h4>
-                <p>Über die Mailingsliste wirst du stets mit Updates und Neuigkeiten rund um den Verein, die Treffen und die Commuinty versorgt. Wenn das Forum keine Option für dich ist, kannst du einige Freifunker auch über die Mailingliste erreichen.</p>
-                <p>Über das Formular kannst du dich eintragen:</p><br>
-
-                <form id="mailinglistsignup" class="" method="post" role="form" action="https://lists.ffrn.de/subscribe/list">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Name oder Alias" name="fullname" />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="email" class="form-control input-lg" placeholder="E-Mail" />
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-
-                        <span class="input-group-btn">
-                            <button class="btn btn-lg" type="button" id="toggle-password">
-                                <span class="glyphicon glyphicon-eye-open" ></span>
-                            </button>
-                        </span>
-                            <input type="password" class="form-control input-lg" placeholder="Passwort" name="pw" />
-                        </div>
-
-                        <input type="password"  class="form-control input-lg hidden" placeholder="Passwort bestätigen" name="pw-conf" />
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">In die Mailingliste eintragen.</button>
-                    </div>
-                </form>
-                <p>Um mit den Leuten auf der Mailingliste zu schreiben, sende deine Nachricht an <a href="mailto:list@lists.ffrn.de">list@lists.ffrn.de</a>. Sie wird an alle Abonnenten verteilt.</p>
             </div>
             <div class="col-sm-6">
                 <h4><i class="fa fa-rocket"></i> Chat</h4>
@@ -137,7 +114,6 @@
             <hr>
             <ul>
                 <li><a target="_blank" href="irc://irc.gackint.org/freifunk-rhein-neckar"><i class="fa fa-comments-o"></i> IRC</a></li>
-                <li><a target="_blank" href="https://lists.ffrn.de/"><i class="fa fa-paper-plane"></i> Mailingliste</a></li>
                 <li><a target="_blank" href="https://w.ffrn.de/kontakt"><i class="fa fa-life-ring"></i> Ansprechpartner</a></li>
                 <li><a target="_blank" href="https://twitter.com/FFRheinNeckar"><i class="fa fa-twitter"></i> Twitter</a></li>
                 <li><a target="_blank" href="https://www.facebook.com/freifunkrheinneckar"><i class="fa fa-facebook-square"></i> Facebook</a></li>
@@ -152,79 +128,6 @@
 <script src="js/headroom.conf.js"></script>
 <script src="js/bootstrapValidator.js"></script>
 <script src="js/language/de_DE.js"></script>
-<script>
-    // Form Validation
-    $(document).ready(function () {
-        /**
-         * The Mailinglist requires the user to enter the Password twice.
-         * Because we only have one password field, with the ability to toggle
-         * between password and text, we need to put everything from the password
-         * field to the validation.
-         */
-         $('input[name="pw"]').change(function () {
-            var val = $('input[name="pw"]').val();
-            $('input[name="pw-conf"]').val(val);
-        });
-
-        $('#toggle-password').click(function() {
-           togglePassword($('input[name="pw"]')[0])
-           $(this).children().first()
-                   .toggleClass('glyphicon-eye-open')
-                   .toggleClass('glyphicon-eye-close');
-        });
-
-        var togglePassword = function($field) {
-          if ($field) {
-              if($field.type === 'password') {
-                  $field.type = 'text';
-              } else {
-                  $field.type = 'password';
-              }
-          }
-        };
-
-        var form = $('#mailinglistsignup').bootstrapValidator({
-            live: 'enabled',
-
-            submitButtons: 'button[type="submit"]',
-            trigger: null,
-            group: '.form-group',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Die Email Adresse wird benötigt und darf nicht leer sein.'
-                        },
-                        emailAddress: {
-                            message: 'Bitte eine gültige Email Adresse eingeben!'
-                        }
-                    }
-                },
-                fullname: {
-                  validators: {
-                      notEmpty: {
-                          message: 'Bitte gebe einen Namen oder Alias ein.'
-                      }
-                  }
-                },
-                pw: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Bitte wähle ein Passwort!'
-                        }
-                    }
-                }
-            }
-        });
-    });
-
-
-</script>
 <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];
