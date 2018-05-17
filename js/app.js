@@ -4,7 +4,7 @@
 // +  Beschreibung: Application logic, for the onsite Skript.
 // +  KorrektorIn:
 // +  Status:
-// +  Revision: 2016/06/28
+// +  Revision: 2018-05-17
 // +---------------------------------------------------------------------------
 'use strict'
 
@@ -97,11 +97,11 @@ app.getCurrentStats = function () {
           nNodes = nodes.filter(function (d) {
             return !d.is_gateway;
           }).length,
-          nClients = nodes.reduce(function (previusValue, currentValue) {
-            if (typeof(previusValue) !== "number") {
-              previusValue = 0;
+          nClients = nodes.reduce(function (previousValue, currentValue) {
+            if (typeof(previousValue) !== "number") {
+              previousValue = 0;
             }
-            return previusValue + currentValue.clients;
+            return previousValue + currentValue.clients;
           }),
           geoNodes = nodes.filter(function (d) {
             return d.location;
