@@ -6,12 +6,16 @@
 // +  with ajax requests.
 // +  KorrektorIn:
 // +  Status:
-// +  Revision: 2014/07/28
+// +  Revision: 2018-05-17
 // +---------------------------------------------------------------------------
 
 
-//$file = file_get_contents("http://map.ffrn.de/data/nodes.json");
-$file = file_get_contents("https://map.ffrn.de/data/nodelist.json");
+$file = file_get_contents("https://map.ffrn.de/data/meshviewer.json");
+if (!$file){
+	$file = "{}";
+}
+
+header('Content-Type: application/json');
 echo $file;
 
 ?>
