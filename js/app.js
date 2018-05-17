@@ -82,48 +82,49 @@ $(document).on("usersupdated", function () {
 // +---------------------------------------------------------------------------
 app.getCurrentStats = function () {
   $.get("proxy.php", function (json) {
-    app.data.retrievedFromJson = JSON.parse(json);
+    // json should already be an object. If not, try to parse. 
+    if (typeof json === "string") json = JSON.parse(json);
+    if (!json || typeof json.nodes === "undefined"){
+      // error parsing JSON
+    } else {
+      app.data.retrievedFromJson = json; 
 
-    var nodes = [];
-    $.each(app.data.retrievedFromJson.nodes, function (index, node) {
-      nodes.push(node);
-    });
+      var date = new Date(app.data.retrievedFromJson.timestamp);
+      var nodes = app.data.retrievedFromJson.nodes;
+      var onlineNodes = nodes.filter(function (d) {
+            return d.is_online;
+          }).length,
+          nNodes = nodes.filter(function (d) {
+            return !d.is_gateway;
+          }).length,
+          nClients = nodes.reduce(function (previusValue, currentValue) {
+            if (typeof(previusValue) !== "number") {
+              previusValue = 0;
+            }
+            return previusValue + currentValue.clients;
+          }),
+          geoNodes = nodes.filter(function (d) {
+            return d.location;
+          }).length;
 
-    var date = new Date(app.data.retrievedFromJson.timestamp);
-    var onlineNodes = nodes.filter(function (d) {
-        return d.status.online;
-      }).length,
-      nNodes = nodes.filter(function (d) {
-        return !d.status.gateway;
-      }).length,
-      nClients = nodes.reduce(function (previusValue, currentValue) {
-        if (typeof(previusValue) !== "number") {
-          previusValue = 0;
-        }
-        return previusValue + currentValue.status.clients;
-      }),
-      geoNodes = nodes.filter(function (d) {
-        return d.position;
-      }).length;
-    // + When the pased data differs from the current: update the values
-    // + and trigger the event.
-    if (app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
-      app.data.onlineNodeCount = onlineNodes;
-      app.data.nodesWithGeo = geoNodes;
-      app.data.offlineNodeCount = nNodes - onlineNodes;
-      app.data.nodesTotal = nNodes;
-      $(document).trigger("geonodesupdated");
+      // + When the pased data differs from the current: update the values
+      // + and trigger the event.
+      if (app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
+        app.data.onlineNodeCount = onlineNodes;
+        app.data.nodesWithGeo = geoNodes;
+        app.data.offlineNodeCount = nNodes - onlineNodes;
+        app.data.nodesTotal = nNodes;
+        $(document).trigger("geonodesupdated");
+      }
+      if (app.data.onlineUserCount !== (nClients)) {
+        app.data.onlineUserCount = nClients;
+        $(document).trigger("usersupdated");
+      }
+      if (app.data.nodesTotal !== nNodes) {
+        app.data.nodesTotal = nNodes;
+        $(document).trigger("nodesupdated");
+      }
     }
-    if (app.data.onlineUserCount !== (nClients)) {
-
-      app.data.onlineUserCount = nClients;
-      $(document).trigger("usersupdated");
-    }
-    if (app.data.nodesTotal !== nNodes) {
-      app.data.nodesTotal = nNodes;
-      $(document).trigger("nodesupdated");
-    }
-
   });
 };
 
