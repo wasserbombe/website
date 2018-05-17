@@ -146,16 +146,11 @@ app.processNodes = function (map) {
     $.each(data.nodes, function (index, node) {
       var lat, long, online, name, category;
       // Get Data out of the node.
-      if (node.position) {
-        lat = node.position.lat;
-        long = node.position.long;
-        if (node.status) {
-          online = node.status.online;
+      if (node.location) {
+        if (node.hostname) {
+          name = node.hostname;
         }
-        if (node.nodeinfo) {
-          name = node.name;
-        }
-        map.addClusterMarker(lat, long, online, name, node.status.clients, node.lastseen);
+        map.addClusterMarker(node.location.latitude, node.location.longitude, node.is_online, name, node.clients, node.lastseen);
       }
     });
     map.processView();
