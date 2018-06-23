@@ -4,7 +4,7 @@
 // +  Beschreibung: Application logic, for the onsite Skript.
 // +  KorrektorIn:
 // +  Status:
-// +  Revision: 2016/06/28
+// +  Revision: 2018-05-17
 // +---------------------------------------------------------------------------
 'use strict'
 
@@ -82,48 +82,49 @@ $(document).on("usersupdated", function () {
 // +---------------------------------------------------------------------------
 app.getCurrentStats = function () {
   $.get("proxy.php", function (json) {
-    app.data.retrievedFromJson = JSON.parse(json);
+    // json should already be an object. If not, try to parse. 
+    if (typeof json === "string") json = JSON.parse(json);
+    if (!json || typeof json.nodes === "undefined"){
+      // error parsing JSON
+    } else {
+      app.data.retrievedFromJson = json; 
 
-    var nodes = [];
-    $.each(app.data.retrievedFromJson.nodes, function (index, node) {
-      nodes.push(node);
-    });
+      var date = new Date(app.data.retrievedFromJson.timestamp);
+      var nodes = app.data.retrievedFromJson.nodes;
+      var onlineNodes = nodes.filter(function (d) {
+            return d.is_online;
+          }).length,
+          nNodes = nodes.filter(function (d) {
+            return !d.is_gateway;
+          }).length,
+          nClients = nodes.reduce(function (previousValue, currentValue) {
+            if (typeof(previousValue) !== "number") {
+              previousValue = 0;
+            }
+            return previousValue + currentValue.clients;
+          }),
+          geoNodes = nodes.filter(function (d) {
+            return d.location;
+          }).length;
 
-    var date = new Date(app.data.retrievedFromJson.timestamp);
-    var onlineNodes = nodes.filter(function (d) {
-        return d.status.online;
-      }).length,
-      nNodes = nodes.filter(function (d) {
-        return !d.status.gateway;
-      }).length,
-      nClients = nodes.reduce(function (previusValue, currentValue) {
-        if (typeof(previusValue) !== "number") {
-          previusValue = 0;
-        }
-        return previusValue + currentValue.status.clients;
-      }),
-      geoNodes = nodes.filter(function (d) {
-        return d.position;
-      }).length;
-    // + When the pased data differs from the current: update the values
-    // + and trigger the event.
-    if (app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
-      app.data.onlineNodeCount = onlineNodes;
-      app.data.nodesWithGeo = geoNodes;
-      app.data.offlineNodeCount = nNodes - onlineNodes;
-      app.data.nodesTotal = nNodes;
-      $(document).trigger("geonodesupdated");
+      // + When the pased data differs from the current: update the values
+      // + and trigger the event.
+      if (app.data.onlineNodeCount !== onlineNodes || app.data.nodesWithGeo !== geoNodes) {
+        app.data.onlineNodeCount = onlineNodes;
+        app.data.nodesWithGeo = geoNodes;
+        app.data.offlineNodeCount = nNodes - onlineNodes;
+        app.data.nodesTotal = nNodes;
+        $(document).trigger("geonodesupdated");
+      }
+      if (app.data.onlineUserCount !== (nClients)) {
+        app.data.onlineUserCount = nClients;
+        $(document).trigger("usersupdated");
+      }
+      if (app.data.nodesTotal !== nNodes) {
+        app.data.nodesTotal = nNodes;
+        $(document).trigger("nodesupdated");
+      }
     }
-    if (app.data.onlineUserCount !== (nClients)) {
-
-      app.data.onlineUserCount = nClients;
-      $(document).trigger("usersupdated");
-    }
-    if (app.data.nodesTotal !== nNodes) {
-      app.data.nodesTotal = nNodes;
-      $(document).trigger("nodesupdated");
-    }
-
   });
 };
 
@@ -145,16 +146,11 @@ app.processNodes = function (map) {
     $.each(data.nodes, function (index, node) {
       var lat, long, online, name, category;
       // Get Data out of the node.
-      if (node.position) {
-        lat = node.position.lat;
-        long = node.position.long;
-        if (node.status) {
-          online = node.status.online;
+      if (node.location) {
+        if (node.hostname) {
+          name = node.hostname;
         }
-        if (node.nodeinfo) {
-          name = node.name;
-        }
-        map.addClusterMarker(lat, long, online, name, node.status.clients, node.lastseen);
+        map.addClusterMarker(node.location.latitude, node.location.longitude, node.is_online, name, node.clients, node.lastseen);
       }
     });
     map.processView();
